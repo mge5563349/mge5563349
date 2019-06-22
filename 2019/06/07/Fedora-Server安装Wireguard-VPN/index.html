@@ -114,7 +114,7 @@
 
 
 
-  <meta name="keywords" content="VPN,">
+  <meta name="keywords" content="Hexo, NexT">
 
 
 
@@ -125,18 +125,17 @@
 
 
 
-<meta name="description" content="1. 前言：Wireguard是一个具备Linux Kernel支持的新型的VPN工具，拥有先进的加密协议，如：Curve25519、ChaCha20、Poly1305、BLAKE2和HKDF，并且因为它的多线程设计，使它比别的VPN工具拥有更高的吞吐量。 2. 安装 在Fedora server上安装：  123# 启用wireguard源，并且安装wireguard$ sudo dnf cop">
-<meta name="keywords" content="VPN">
+<meta name="description" content="1. 前言Wireguard是一个具备Linux Kernel支持的新型的VPN工具，拥有先进的加密协议，如：Curve25519、ChaCha20、Poly1305、BLAKE2和HKDF，并且因为它的多线程设计，使它比别的VPN工具拥有更高的吞吐量。 2. 安装 在Fedora server上安装：  123# 启用wireguard源，并且安装wireguard$ sudo dnf copr">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Fedora Server安装Wireguard VPN">
 <meta property="og:url" content="http://mge5563349.github.io/2019/06/07/Fedora-Server安装Wireguard-VPN/index.html">
 <meta property="og:site_name" content="神采奕奕的乌龟">
-<meta property="og:description" content="1. 前言：Wireguard是一个具备Linux Kernel支持的新型的VPN工具，拥有先进的加密协议，如：Curve25519、ChaCha20、Poly1305、BLAKE2和HKDF，并且因为它的多线程设计，使它比别的VPN工具拥有更高的吞吐量。 2. 安装 在Fedora server上安装：  123# 启用wireguard源，并且安装wireguard$ sudo dnf cop">
+<meta property="og:description" content="1. 前言Wireguard是一个具备Linux Kernel支持的新型的VPN工具，拥有先进的加密协议，如：Curve25519、ChaCha20、Poly1305、BLAKE2和HKDF，并且因为它的多线程设计，使它比别的VPN工具拥有更高的吞吐量。 2. 安装 在Fedora server上安装：  123# 启用wireguard源，并且安装wireguard$ sudo dnf copr">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-07T11:15:45.000Z">
+<meta property="og:updated_time" content="2019-06-22T13:02:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Fedora Server安装Wireguard VPN">
-<meta name="twitter:description" content="1. 前言：Wireguard是一个具备Linux Kernel支持的新型的VPN工具，拥有先进的加密协议，如：Curve25519、ChaCha20、Poly1305、BLAKE2和HKDF，并且因为它的多线程设计，使它比别的VPN工具拥有更高的吞吐量。 2. 安装 在Fedora server上安装：  123# 启用wireguard源，并且安装wireguard$ sudo dnf cop">
+<meta name="twitter:description" content="1. 前言Wireguard是一个具备Linux Kernel支持的新型的VPN工具，拥有先进的加密协议，如：Curve25519、ChaCha20、Poly1305、BLAKE2和HKDF，并且因为它的多线程设计，使它比别的VPN工具拥有更高的吞吐量。 2. 安装 在Fedora server上安装：  123# 启用wireguard源，并且安装wireguard$ sudo dnf copr">
 
 
 
@@ -242,26 +241,6 @@
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
-            
-            关于
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
-            
-            标签
           </a>
         </li>
       
@@ -390,6 +369,28 @@
           </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/VPN/" itemprop="url" rel="index">
+                    <span itemprop="name">VPN</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -427,7 +428,7 @@
       
 
       
-        <h3 id="1-前言："><a href="#1-前言：" class="headerlink" title="1. 前言："></a>1. 前言：</h3><p><code>Wireguard</code>是一个具备<code>Linux Kernel</code>支持的新型的<code>VPN</code>工具，拥有先进的加密协议，如：<code>Curve25519</code>、<code>ChaCha20</code>、<code>Poly1305</code>、<code>BLAKE2</code>和<code>HKDF</code>，并且因为它的多线程设计，使它比别的<code>VPN</code>工具拥有更高的吞吐量。</p>
+        <h3 id="1-前言"><a href="#1-前言" class="headerlink" title="1. 前言"></a>1. 前言</h3><p><code>Wireguard</code>是一个具备<code>Linux Kernel</code>支持的新型的<code>VPN</code>工具，拥有先进的加密协议，如：<code>Curve25519</code>、<code>ChaCha20</code>、<code>Poly1305</code>、<code>BLAKE2</code>和<code>HKDF</code>，并且因为它的多线程设计，使它比别的<code>VPN</code>工具拥有更高的吞吐量。</p>
 <h3 id="2-安装"><a href="#2-安装" class="headerlink" title="2. 安装"></a>2. 安装</h3><ul>
 <li>在<code>Fedora server</code>上安装：</li>
 </ul>
@@ -436,6 +437,7 @@
 <li>在<code>CentosOS</code>上安装：</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 添加wireguard源，并安装wireguard</span></span><br><span class="line">$ yum update -y</span><br><span class="line">$ reboot <span class="comment"># unless there were no updates</span></span><br><span class="line">$ sudo curl -Lo /etc/yum.repos.d/wireguard.repo https://copr.fedorainfracloud.org/coprs/jdoss/wireguard/repo/epel-7/jdoss-wireguard-epel-7.repo</span><br><span class="line">$ sudo yum install epel-release</span><br><span class="line">$ sudo yum install wireguard-dkms wireguard-tools</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <h3 id="3-配置Wireguard"><a href="#3-配置Wireguard" class="headerlink" title="3. 配置Wireguard"></a>3. 配置<code>Wireguard</code></h3><blockquote>
 <p>配置文件中的公钥和私钥的放置方法：<code>Client</code>和<code>Server</code>的配置文件中，<code>[Interface]</code>中放置自己各自的<code>私钥</code>文件，<code>[Peer]</code>端中的公钥进行彼此交换放置。</p>
 </blockquote>
@@ -513,14 +515,26 @@
     
 
     
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    神采奕奕的乌龟
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://mge5563349.github.io/2019/06/07/Fedora-Server安装Wireguard-VPN/" title="Fedora Server安装Wireguard VPN">http://mge5563349.github.io/2019/06/07/Fedora-Server安装Wireguard-VPN/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by-sa/4.0/" rel="external nofollow" target="_blank">CC BY-SA 4.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
 
     <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/VPN/" rel="tag"># VPN</a>
-          
-        </div>
       
 
       
@@ -633,6 +647,15 @@
             
 
             
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
 
             
               
@@ -672,7 +695,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-前言："><span class="nav-number">1.</span> <span class="nav-text">1. 前言：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-安装"><span class="nav-number">2.</span> <span class="nav-text">2. 安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-配置Wireguard"><span class="nav-number">3.</span> <span class="nav-text">3. 配置Wireguard</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-最后"><span class="nav-number">4.</span> <span class="nav-text">4. 最后</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-前言"><span class="nav-number">1.</span> <span class="nav-text">1. 前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-安装"><span class="nav-number">2.</span> <span class="nav-text">2. 安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-配置Wireguard"><span class="nav-number">3.</span> <span class="nav-text">3. 配置Wireguard</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-最后"><span class="nav-number">4.</span> <span class="nav-text">4. 最后</span></a></li></ol></div>
             
 
           </div>

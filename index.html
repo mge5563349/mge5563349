@@ -242,26 +242,6 @@
         </li>
       
         
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
-            
-            关于
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
-            
-            标签
-          </a>
-        </li>
-      
-        
         <li class="menu-item menu-item-categories">
           <a href="/categories/" rel="section">
             
@@ -388,6 +368,28 @@
           </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/VPN/" itemprop="url" rel="index">
+                    <span itemprop="name">VPN</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -426,8 +428,7 @@
 
       
         
-          
-            <h3 id="1-前言："><a href="#1-前言：" class="headerlink" title="1. 前言："></a>1. 前言：</h3><p><code>Wireguard</code>是一个具备<code>Linux Kernel</code>支持的新型的<code>VPN</code>工具，拥有先进的加密协议，如：<code>Curve25519</code>、<code>ChaCha20</code>、<code>Poly1305</code>、<code>BLAKE2</code>和<code>HKDF</code>，并且因为它的多线程设计，使它比别的<code>VPN</code>工具拥有更高的吞吐量。</p>
+          <h3 id="1-前言"><a href="#1-前言" class="headerlink" title="1. 前言"></a>1. 前言</h3><p><code>Wireguard</code>是一个具备<code>Linux Kernel</code>支持的新型的<code>VPN</code>工具，拥有先进的加密协议，如：<code>Curve25519</code>、<code>ChaCha20</code>、<code>Poly1305</code>、<code>BLAKE2</code>和<code>HKDF</code>，并且因为它的多线程设计，使它比别的<code>VPN</code>工具拥有更高的吞吐量。</p>
 <h3 id="2-安装"><a href="#2-安装" class="headerlink" title="2. 安装"></a>2. 安装</h3><ul>
 <li>在<code>Fedora server</code>上安装：</li>
 </ul>
@@ -436,44 +437,13 @@
 <li>在<code>CentosOS</code>上安装：</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 添加wireguard源，并安装wireguard</span></span><br><span class="line">$ yum update -y</span><br><span class="line">$ reboot <span class="comment"># unless there were no updates</span></span><br><span class="line">$ sudo curl -Lo /etc/yum.repos.d/wireguard.repo https://copr.fedorainfracloud.org/coprs/jdoss/wireguard/repo/epel-7/jdoss-wireguard-epel-7.repo</span><br><span class="line">$ sudo yum install epel-release</span><br><span class="line">$ sudo yum install wireguard-dkms wireguard-tools</span><br></pre></td></tr></table></figure>
-<h3 id="3-配置Wireguard"><a href="#3-配置Wireguard" class="headerlink" title="3. 配置Wireguard"></a>3. 配置<code>Wireguard</code></h3><blockquote>
-<p>配置文件中的公钥和私钥的放置方法：<code>Client</code>和<code>Server</code>的配置文件中，<code>[Interface]</code>中放置自己各自的<code>私钥</code>文件，<code>[Peer]</code>端中的公钥进行彼此交换放置。</p>
-</blockquote>
-<ul>
-<li>生成公钥和私钥</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 为服务器生成一对公钥和私钥</span></span><br><span class="line">$ wg genkey | tee server-privatekey | wg pubkey &gt; server-publickey</span><br><span class="line"><span class="comment"># 为客户端生成一对公钥和私钥</span></span><br><span class="line">$ wg genkey | tee client-privatekey | wg pubkey &gt; client-publickey</span><br></pre></td></tr></table></figure>
-<ul>
-<li><code>Wireguard Server</code>模板配置文件：默认后缀为<code>***.conf</code></li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用iptables作为防火墙</span></span><br><span class="line">[Interface]</span><br><span class="line">PrivateKey = &lt;server-privatekey&gt;</span><br><span class="line">Address = 10.0.0.1/24 </span><br><span class="line">PostUp   = <span class="built_in">echo</span> 1 &gt; /proc/sys/net/ipv4/ip_forward; iptables -A FORWARD -i wg0 -j ACCEPT; iptables -A FORWARD -o wg0 -j ACCEPT; iptables -t nat -A POSTROUTING -o <span class="variable">$eth</span> -j MASQUERADE</span><br><span class="line">PostDown = iptables -D FORWARD -i wg0 -j ACCEPT; iptables -D FORWARD -o wg0 -j ACCEPT; iptables -t nat -D POSTROUTING -o <span class="variable">$eth</span> -j MASQUERADE</span><br><span class="line">ListenPort = &lt;Server Port	&gt;</span><br><span class="line">DNS = 8.8.8.8</span><br><span class="line">MTU = 1420</span><br><span class="line"></span><br><span class="line">[Peer]</span><br><span class="line">PublicKey = &lt;client-publickey&gt;</span><br><span class="line">AllowedIPs = 10.0.0.2/32</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用firewalld作为作为防火墙</span></span><br><span class="line">[Interface]</span><br><span class="line">PrivateKey = &lt;server-privatekey&gt;</span><br><span class="line">Address = 10.0.0.1/24,</span><br><span class="line">ListenPort = &lt;Server Port&gt;</span><br><span class="line">PostUp = firewall-cmd --permanent --add-masquerade ; firewall-cmd --permanent --direct --passthrough ipv4 -t nat -A POSTROUTING -s 10.0.0.0/24 -o ens18 -j MASQUERADE ; firewall-cmd --reload </span><br><span class="line">PostDown = firewall-cmd --zone=FedoraServer --remove-masquerade;firewall-cmd --reload</span><br><span class="line">SaveConfig = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">[Peer]</span><br><span class="line">PublicKey = &lt;client-publickey&gt;</span><br><span class="line">AllowedIPs = 10.0.0.2/32</span><br></pre></td></tr></table></figure>
-<ul>
-<li><code>Wireguard Client</code>模板配置文件：默认后缀为<code>***.conf</code></li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[Interface]</span><br><span class="line">PrivateKey = &lt;client-privatekey&gt;</span><br><span class="line">Address = 10.0.0.2/24 </span><br><span class="line">DNS = 8.8.8.8</span><br><span class="line">MTU = 1420</span><br><span class="line"></span><br><span class="line">[Peer]</span><br><span class="line">PublicKey = &lt;server-publickey&gt;</span><br><span class="line">Endpoint = &lt;server ip&gt;:&lt;server port&gt;</span><br><span class="line">AllowedIPs = 0.0.0.0/0, ::0/0</span><br><span class="line">PersistentKeepalive = 25</span><br></pre></td></tr></table></figure>
-<ul>
-<li>例子：</li>
-</ul>
-<blockquote>
-<p>再次说明：配置文件中的公钥和私钥的放置，<code>Client</code>和<code>Server</code>的配置文件中，<code>[Interface]</code>中放置自己各自的<code>私钥</code>文件，<code>[Peer]</code>端中的公钥进行彼此交换放置。</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 生成密钥对</span></span><br><span class="line"><span class="comment"># 生成服务器密钥对</span></span><br><span class="line">$ wg genkey | tee server-privatekey | wg pubkey &gt; server-publickey</span><br><span class="line"><span class="comment"># 生成客户端密钥对</span></span><br><span class="line">$ wg genkey | tee client-privatekey | wg pubkey &gt; client-publickey</span><br><span class="line"><span class="comment"># 打开 server-privatekey server-publickey</span></span><br><span class="line">$ cat server-privatekey</span><br><span class="line">wOb1CjSxGUw0VbGbArCieF1YaDBiLKktZOrg1ustLk0=</span><br><span class="line">$ cat server-publickey</span><br><span class="line">nxk8P325hzXiLCrn6PMg2N0+AokXDmBfTT3r5S/cNjQ=</span><br><span class="line"><span class="comment"># 打开 client-privatekey client-publickey</span></span><br><span class="line">$ cat client-privatekey</span><br><span class="line">yLd80j12qAgU9Y9nZ0w8c8tdJzJAukRoMpW+VwzhknA=</span><br><span class="line">$ cat client-publickey</span><br><span class="line">CPoV3q1g0mIJTH+1ZGuQoNXOfka0XrqJX7eeqMdPXWM=</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># CentOS7 Server配置文件,使用firewalld作为防火墙</span></span><br><span class="line"><span class="comment"># 服务端配置文件名称：wg0.conf</span></span><br><span class="line"><span class="comment"># 以下密钥对真实有效，可拿来进行测试</span></span><br><span class="line">[Interface]</span><br><span class="line">PrivateKey = wOb1CjSxGUw0VbGbArCieF1YaDBiLKktZOrg1ustLk0=</span><br><span class="line">Address = 10.0.0.1/24,</span><br><span class="line">ListenPort = 38756</span><br><span class="line">PostUp = firewall-cmd --permanent --add-masquerade ; firewall-cmd --permanent --direct --passthrough ipv4 -t nat -A POSTROUTING -s 10.0.0.0/24 -o ens18 -j MASQUERADE ; firewall-cmd --reload </span><br><span class="line">PostDown = firewall-cmd --zone=FedoraServer --remove-masquerade;firewall-cmd --reload</span><br><span class="line">SaveConfig = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">[Peer]</span><br><span class="line">PublicKey = CPoV3q1g0mIJTH+1ZGuQoNXOfka0XrqJX7eeqMdPXWM=</span><br><span class="line">AllowedIPs = 10.0.0.2/32</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Client 配置文件</span></span><br><span class="line"><span class="comment"># 客户端配置文件名称：client.conf</span></span><br><span class="line"><span class="comment"># 以下密钥对真实有效，可拿来进行测试</span></span><br><span class="line">[Interface]</span><br><span class="line">PrivateKey = yLd80j12qAgU9Y9nZ0w8c8tdJzJAukRoMpW+VwzhknA=</span><br><span class="line">Address = 10.0.0.2/24 </span><br><span class="line">DNS = 8.8.8.8</span><br><span class="line">MTU = 1420</span><br><span class="line"></span><br><span class="line">[Peer]</span><br><span class="line">PublicKey = nxk8P325hzXiLCrn6PMg2N0+AokXDmBfTT3r5S/cNjQ=</span><br><span class="line">Endpoint = 123.123.123.123:38756</span><br><span class="line">AllowedIPs = 0.0.0.0/0, ::0/0</span><br><span class="line">PersistentKeepalive = 25</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 服务端启动服务进行测试,wg0 为服务端配置文件名称</span></span><br><span class="line">$ wg-quick up wg0</span><br><span class="line"><span class="comment"># 测试成功后，设定开机启动</span></span><br><span class="line">$ systemctl <span class="built_in">enable</span> wg-quick@wg0</span><br></pre></td></tr></table></figure>
-<p>至此，<code>Wireguard</code>配置完成，将配置文件进行下载，<code>Windows</code>客户端推荐<code>Tunsafe</code>，导入<code>Tunsafe</code>进行测试。如果需要多个客户端，那么就需要创建多个服务端配置文件。</p>
-<h3 id="4-最后"><a href="#4-最后" class="headerlink" title="4. 最后"></a>4. 最后</h3><p><code>Wireguard</code>与<code>OpenVPN</code>的都会在连接之后给予你一个自己设定的内网的<code>IP</code>地址，那么就需要使用系统软防火墙进行路由设定（或称为<code>POSTROUTING</code>）。以下链接供你参考：</p>
-<ul>
-<li><a href="https://linux.cn/article-8098-1.html" target="_blank" rel="noopener">CentOS上的FirewallD简明指南</a></li>
-<li><a href="https://arashmilani.com/post?id=53" target="_blank" rel="noopener">How to configure iptables for openvpn</a></li>
-<li><a href="https://raw.githubusercontent.com/atrandys/wireguard/master/wireguard_install.sh" target="_blank" rel="noopener">wireguard安装脚本</a></li>
-<li><a href="https://www.digitalocean.com/community/tutorials/how-to-set-up-and-configure-an-openvpn-server-on-centos-7" target="_blank" rel="noopener">How To Set Up and Configure an OpenVPN Server on CentOS 7</a></li>
-<li><a href="https://www.wireguard.com/install/" target="_blank" rel="noopener">wireguard installation</a></li>
-<li><a href="https://www.wireguard.com/quickstart/" target="_blank" rel="noopener">wireguard quick start</a></li>
-</ul>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/06/07/Fedora-Server安装Wireguard-VPN/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -561,6 +531,28 @@
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/工具/" itemprop="url" rel="index">
+                    <span itemprop="name">工具</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -698,6 +690,15 @@
               </div>
             
 
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
             
 
             
